@@ -1,6 +1,10 @@
 window.addEventListener("DOMContentLoaded", () => {
     const music = document.getElementById("bgMusic");
 
+    if (music) {
+        music.volume = 0.2;   // 🔊 20% volume
+    }
+
     document.addEventListener("click", () => {
         if (music) {
             music.play().catch(err => console.log("Music blocked:", err));
