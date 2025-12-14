@@ -58,6 +58,7 @@ document.getElementById("yes").addEventListener("click", () => {
     celebrate.classList.remove("hidden");
     glow.classList.remove("hidden");
 
+    // Floating hearts
     for (let i = 0; i < 30; i++) {
         const heart = document.createElement("span");
         heart.innerHTML = "❤️";
@@ -68,4 +69,8 @@ document.getElementById("yes").addEventListener("click", () => {
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 2000);
     }
+
+    // 👉 START PHOTO MEMORIES AFTER 1.5s
+    setTimeout(showMemories, 1500);
 });
+
