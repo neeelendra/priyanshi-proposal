@@ -1,3 +1,8 @@
+const music = document.getElementById("bgMusic");
+
+document.addEventListener("click", () => {
+    music.play();
+}, { once: true });
 const messageText =
 "Priyanshi, from the moment you came into my life, everything felt more beautiful. \
 Your smile calms me, your presence completes me, and your love means everything to me. \
