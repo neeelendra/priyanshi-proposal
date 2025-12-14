@@ -1,5 +1,5 @@
 // ===============================
-// GLOBAL ELEMENTS
+// ELEMENTS
 // ===============================
 const music = document.getElementById("bgMusic");
 const messageEl = document.getElementById("message");
@@ -8,6 +8,8 @@ const celebrate = document.querySelector(".celebrate");
 const glow = document.getElementById("glowText");
 const memories = document.getElementById("memories");
 const noBtn = document.getElementById("no");
+const startBtn = document.getElementById("startBtn");
+const startScreen = document.getElementById("startScreen");
 
 // ===============================
 // STORY TEXT
@@ -16,7 +18,7 @@ const messageText =
 "Pariiii… 💖\n\n" +
 "Aap bohot gande ho…\n" +
 "Bohot zyada gande ho 😌\n\n" +
-"Par pata hai?\n" +
+"Par sach bolu?\n" +
 "Mujhe aap waise hi bohot pasand ho ❤️\n\n" +
 "Main har din aap se thoda aur pyaar karne lagta hoon… 💕\n";
 
@@ -24,32 +26,22 @@ let i = 0;
 const speed = 50;
 
 // ===============================
-// START BUTTON HANDLER (GLOBAL)
+// START BUTTON CLICK
 // ===============================
-function startSite() {
-    // Play music (mobile safe)
-    if (music) {
-        music.volume = 0.2; // 20%
-        music.play().catch(() => {});
-    }
+startBtn.addEventListener("click", () => {
+    // hide start screen
+    startScreen.style.display = "none";
 
-    // Hide start screen
-    const startScreen = document.getElementById("startScreen");
-    if (startScreen) startScreen.style.display = "none";
+    // play music (mobile safe)
+    music.volume = 0.2;
+    music.play().catch(() => {});
 
-    // Start story
-    startStory();
-}
-
-// ===============================
-// STORY START
-// ===============================
-function startStory() {
+    // start story
     typeWriter();
-}
+});
 
 // ===============================
-// TYPEWRITER EFFECT
+// TYPEWRITER
 // ===============================
 function typeWriter() {
     if (i < messageText.length) {
@@ -62,22 +54,22 @@ function typeWriter() {
 }
 
 // ===============================
-// NO BUTTON ESCAPE (MOBILE SAFE)
+// NO BUTTON ESCAPE (MOBILE + DESKTOP)
 // ===============================
 function moveNoButton() {
     const x = Math.random() * (window.innerWidth - 100);
     const y = Math.random() * (window.innerHeight - 50);
 
     noBtn.style.position = "absolute";
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
 }
 
 noBtn.addEventListener("mouseover", moveNoButton);
 noBtn.addEventListener("touchstart", moveNoButton);
 
 // ===============================
-// YES BUTTON CELEBRATION
+// YES BUTTON
 // ===============================
 document.getElementById("yes").addEventListener("click", () => {
     proposal.classList.add("hidden");
@@ -85,7 +77,6 @@ document.getElementById("yes").addEventListener("click", () => {
     glow.classList.remove("hidden");
     memories.classList.remove("hidden");
 
-    // Floating hearts
     for (let j = 0; j < 40; j++) {
         const heart = document.createElement("span");
         heart.innerHTML = "💖";
