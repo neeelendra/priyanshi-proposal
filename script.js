@@ -4,9 +4,9 @@ document.addEventListener("click", () => {
     music.play();
 }, { once: true });
 const messageText =
-"Priyanshi, from the moment you came into my life, everything felt more beautiful. \
-Your smile calms me, your presence completes me, and your love means everything to me. \
-So today, with all my heart, I just want to ask you one thing… 💖";
+"Pariii, aap bohot gande hoo...........bohot hi jyadaaaaaaaa. \
+Aap gandeee hoooo. \
+Prrrr mein aap se pyaar karta huuuu...kisise baat nhi karunga mein aabbbbbbb....💖";
 
 let i = 0;
 const speed = 50;
