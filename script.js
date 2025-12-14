@@ -1,29 +1,56 @@
-window.addEventListener("DOMContentLoaded", () => {
-    const music = document.getElementById("bgMusic");
-
-    if (music) {
-        music.volume = 0.2;   // 🔊 20% volume
-    }
-
-    document.addEventListener("click", () => {
-        if (music) {
-            music.play().catch(err => console.log("Music blocked:", err));
-        }
-    }, { once: true });
-});
-"Pariii, aap bohot gande hoo...........bohot hi jyadaaaaaaaa. \
-Aap gandeee hoooo. \
-Prrrr mein aap se pyaar karta huuuu...kisise baat nhi karunga mein aabbbbbbb....💖";
-
-let i = 0;
-const speed = 50;
-
+// ===============================
+// GLOBAL ELEMENTS
+// ===============================
+const music = document.getElementById("bgMusic");
 const messageEl = document.getElementById("message");
 const proposal = document.querySelector(".proposal");
 const celebrate = document.querySelector(".celebrate");
 const glow = document.getElementById("glowText");
+const memories = document.getElementById("memories");
 const noBtn = document.getElementById("no");
 
+// ===============================
+// STORY TEXT
+// ===============================
+const messageText =
+"Pariiii… 💖\n\n" +
+"Aap bohot gande ho…\n" +
+"Bohot zyada gande ho 😌\n\n" +
+"Par pata hai?\n" +
+"Mujhe aap waise hi bohot pasand ho ❤️\n\n" +
+"Main har din aap se thoda aur pyaar karne lagta hoon… 💕\n";
+
+let i = 0;
+const speed = 50;
+
+// ===============================
+// START BUTTON HANDLER (GLOBAL)
+// ===============================
+function startSite() {
+    // Play music (mobile safe)
+    if (music) {
+        music.volume = 0.2; // 20%
+        music.play().catch(() => {});
+    }
+
+    // Hide start screen
+    const startScreen = document.getElementById("startScreen");
+    if (startScreen) startScreen.style.display = "none";
+
+    // Start story
+    startStory();
+}
+
+// ===============================
+// STORY START
+// ===============================
+function startStory() {
+    typeWriter();
+}
+
+// ===============================
+// TYPEWRITER EFFECT
+// ===============================
 function typeWriter() {
     if (i < messageText.length) {
         messageEl.innerHTML += messageText.charAt(i);
@@ -33,44 +60,42 @@ function typeWriter() {
         proposal.classList.remove("hidden");
     }
 }
-typeWriter();
 
-/* Floating Hearts */
-const heartsContainer = document.querySelector(".hearts");
-setInterval(() => {
-    const heart = document.createElement("span");
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 30 + 15 + "px";
-    heartsContainer.appendChild(heart);
-    setTimeout(() => heart.remove(), 7000);
-}, 300);
+// ===============================
+// NO BUTTON ESCAPE (MOBILE SAFE)
+// ===============================
+function moveNoButton() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
 
-/* No Button Escape */
-noBtn.addEventListener("mouseover", () => {
-    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
-    noBtn.style.top = Math.random() * (window.innerHeight - 100) + "px";
-});
+    noBtn.style.position = "absolute";
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
+}
 
-/* YES Celebration */
+noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("touchstart", moveNoButton);
+
+// ===============================
+// YES BUTTON CELEBRATION
+// ===============================
 document.getElementById("yes").addEventListener("click", () => {
     proposal.classList.add("hidden");
     celebrate.classList.remove("hidden");
     glow.classList.remove("hidden");
+    memories.classList.remove("hidden");
 
     // Floating hearts
-    for (let i = 0; i < 30; i++) {
+    for (let j = 0; j < 40; j++) {
         const heart = document.createElement("span");
-        heart.innerHTML = "❤️";
-        heart.style.position = "absolute";
+        heart.innerHTML = "💖";
+        heart.style.position = "fixed";
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.top = Math.random() * 100 + "vh";
-        heart.style.fontSize = "30px";
+        heart.style.top = "100vh";
+        heart.style.fontSize = "24px";
+        heart.style.animation = "floatUp 4s linear";
         document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 2000);
+
+        setTimeout(() => heart.remove(), 4000);
     }
-
-    // 👉 START PHOTO MEMORIES AFTER 1.5s
-    setTimeout(showMemories, 1500);
 });
-
