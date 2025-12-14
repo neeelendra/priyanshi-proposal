@@ -1,9 +1,12 @@
-const music = document.getElementById("bgMusic");
+window.addEventListener("DOMContentLoaded", () => {
+    const music = document.getElementById("bgMusic");
 
-document.addEventListener("click", () => {
-    music.play();
-}, { once: true });
-const messageText =
+    document.addEventListener("click", () => {
+        if (music) {
+            music.play().catch(err => console.log("Music blocked:", err));
+        }
+    }, { once: true });
+});
 "Pariii, aap bohot gande hoo...........bohot hi jyadaaaaaaaa. \
 Aap gandeee hoooo. \
 Prrrr mein aap se pyaar karta huuuu...kisise baat nhi karunga mein aabbbbbbb....💖";
